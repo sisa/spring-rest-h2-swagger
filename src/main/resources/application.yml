@@ -1,0 +1,16 @@
+spring:
+    profiles:
+      active: dev
+    h2:
+      console:
+        enabled: false
+        path: /h2_console
+      datasource:
+          url: jdbc:h2:file:~/h2/testdb
+          username: sa
+          password:
+          driverClassName: org.h2.Driver
+
+server:
+  servlet:
+    context-path: /api
