@@ -4,6 +4,9 @@
 
    Swagger ile Spring Rest API Dökümanı Hazırlama
    
+   [![Build Status](https://travis-ci.org/sisa/spring-rest-h2-swagger.svg?branch=master)](https://travis-ci.org/sisa) 
+      [![Codecov branch](https://codecov.io/gh/sisa/spring-rest-h2-swagger/branch/master/graphs/badge.svg)](https://codecov.io/gh/sisa/spring-rest-h2-swagger)
+   
 
 ## Gereksinimler    
 
