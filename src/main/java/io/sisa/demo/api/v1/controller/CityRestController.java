@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/v1/city")
-@Api(value="City", description="Operations pertaining to cities in Demos")
+@Api(value="CityRestController", description="Operations pertaining to cities in Demos")
 public class CityRestController {
 
 	private  final CityService cityService;
