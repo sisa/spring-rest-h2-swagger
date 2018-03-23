@@ -1,0 +1,19 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=d3a5392c036ac2c220667879ea20dfdea4999fb9c1c3fe7d9b1d39a4158f4043
+language: java
+jdk: oraclejdk8
+sudo: false
+
+notifications:
+    email:
+        - isaozturk@gmail.com
+install:
+  - pip install --user codecov
+
+script:
+  - mvn cobertura:cobertura
+
+# public repo on Travis CI
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
