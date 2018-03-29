@@ -1,10 +1,10 @@
 package io.sisa.demo.core.model.service.impl;
 
 import io.sisa.demo.core.model.domain.City;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import io.sisa.demo.core.model.repository.CityRepository;
 import io.sisa.demo.core.model.service.CityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * Created on Mart, 2018
  *
- * @author isao
+ * @author sisa
  */
 @Service
 public class CityServiceImpl implements CityService{

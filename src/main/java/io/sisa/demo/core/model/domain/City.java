@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created on Mart, 2018
  *
- * @author isao
+ * @author sisa
  */
 @Data
 @Entity

@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * Created on Mart, 2018
  *
- * @author isao
+ * @author sisa
  */
 @Data
 public class CityDTO {

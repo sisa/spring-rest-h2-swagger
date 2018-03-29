@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Created on Mart, 2018
  *
- * @author isao
+ * @author sisa
  */
 @Repository
 public interface CityRepository extends CrudRepository<City, Long> {
