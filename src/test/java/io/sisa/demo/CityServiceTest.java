@@ -42,6 +42,6 @@ public class CityServiceTest {
 
         given(cityRepository.findById(anyLong())).willReturn(optionalCity);
 
-       assertThat(cityService.findById(1L).getCityCode()).isEqualTo(57);
+       assertThat(cityService.findById(1L).getCityCode()).isEqualTo(53);
     }
 }
