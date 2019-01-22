@@ -17,7 +17,7 @@ public class CityHelperService {
 
         CityDTO cityDTO =  new CityDTO();
 
-        cityDTO.setCityId(cityEntity.getId());
+        cityDTO.setId(cityEntity.getId());
         cityDTO.setCityName(cityEntity.getCityName());
         cityDTO.setCityCode(cityEntity.getCityCode());
         cityDTO.setCountry(cityEntity.getCountry());

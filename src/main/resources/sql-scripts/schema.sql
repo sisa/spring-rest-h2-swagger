@@ -3,5 +3,6 @@ CREATE TABLE city (
   city_code INT NOT NULL,
   city_name varchar(255) DEFAULT NULL,
   country varchar(100) DEFAULT NULL,
+  validitiy_end_date timestamp,
   PRIMARY KEY (id)
 );

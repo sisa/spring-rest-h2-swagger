@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Created on Mart, 2018
@@ -28,5 +29,8 @@ public class City implements Serializable{
 
 	@Column(name = "country")
 	private String country;
+
+	@Column(name = "validitiy_end_date")
+	private LocalDateTime validityDateTime;
 
 }

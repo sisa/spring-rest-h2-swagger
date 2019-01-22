@@ -25,7 +25,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
-				.select()                 .apis(RequestHandlerSelectors.basePackage("io.sisa.demo.api.v1.controller"))
+				.select().apis(RequestHandlerSelectors.basePackage("io.sisa.demo.api.v1.controller"))
 				.paths(regex("/v1/city.*"))
 				.build()
 				.apiInfo(metaData());
@@ -34,7 +34,7 @@ public class SwaggerConfig {
 
 	private ApiInfo metaData() {
 		ApiInfo apiInfo = new ApiInfo(
-				"Demo REST API",
+				"REST API",
 				"Demo Project",
 				"1.0",
 				"/",

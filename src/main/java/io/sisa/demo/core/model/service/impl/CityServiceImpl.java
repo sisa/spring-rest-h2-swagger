@@ -1,9 +1,11 @@
 package io.sisa.demo.core.model.service.impl;
 
+
+import io.sisa.demo.core.exceptions.ResourceNotFoundException;
 import io.sisa.demo.core.model.domain.City;
 import io.sisa.demo.core.model.repository.CityRepository;
 import io.sisa.demo.core.model.service.CityService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,15 +17,13 @@ import java.util.Optional;
  *
  * @author sisa
  */
+
 @Service
+@AllArgsConstructor
 public class CityServiceImpl implements CityService{
 
 	private final CityRepository cityRepository;
 
-	@Autowired
-	public CityServiceImpl(CityRepository cityRepository) {
-		this.cityRepository = cityRepository;
-	}
 
 	@Override
 	public List<City> fetchAllCities() {
@@ -31,8 +31,14 @@ public class CityServiceImpl implements CityService{
 	}
 
 	@Override
-	public Optional<City> findById(Long id) {
-		return cityRepository.findById(id);
+	public City findById(Long id){
+
+		Optional<City> city = cityRepository.findById(id);
+
+		if (!city.isPresent())
+			throw new ResourceNotFoundException("general.NotFound.resource", "id", id);
+
+		return city.get();
 	}
 
 	@Transactional
@@ -43,7 +49,7 @@ public class CityServiceImpl implements CityService{
 
 	@Transactional
 	@Override
-	public City save(City city) {
-		return cityRepository.save(city);
+	public void save(City city) {
+		 cityRepository.save(city);
 	}
 }

@@ -3,23 +3,28 @@ spring:
       active: dev
     h2:
       console:
-        enabled: false
-        path: /h2_console
+        enabled: true
+        path: /h2-console
       datasource:
-          url: jdbc:h2:file:~/h2/testdb
+          url: jdbc:h2:mem:testdb
           username: sa
           password:
           driverClassName: org.h2.Driver
 
 server:
   servlet:
-    context-path: /api
+    context-path: /
   error:
     whitelabel:
       enabled: false
 logging:
-  file: ${spring.application.name}.log
-
+  #file: ${spring.application.name}.log
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%-20thread] %5p [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}] %-5logger{0} - %msg%n"
 #output:
 #  elasticsearch:
 #     hosts: ["localhost:9200"]
+
+spring.jackson.serialization.write_dates_as_timestamps: false
+
+

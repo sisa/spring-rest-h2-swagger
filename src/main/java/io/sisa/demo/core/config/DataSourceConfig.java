@@ -28,6 +28,7 @@ import java.beans.PropertyVetoException;
 @EnableJpaRepositories("io.sisa.demo.core.model.repository")
 public class DataSourceConfig {
 
+
 	private final String [] packageToScan =new String[]{"io.sisa.demo.core.model.domain"};
 
 	@Bean

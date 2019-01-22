@@ -5,6 +5,23 @@ spring:
     sampler:
       probability: 1.0
     enabled: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:5353/admin-console
+
 logging:
   level:
-    io.sisa.demo.api.v1 : INFO
+    io.sisa.demo.api.v1: INFO
+    org.springframework: ERROR
+    org.hibernate: ERROR
+    springfox.documentation: ERROR
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
