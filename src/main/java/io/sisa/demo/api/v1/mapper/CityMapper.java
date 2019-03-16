@@ -1,5 +1,6 @@
-package io.sisa.demo.api.v1.dto;
+package io.sisa.demo.api.v1.mapper;
 
+import io.sisa.demo.api.v1.dto.CityDTO;
 import io.sisa.demo.core.model.domain.City;
 import org.mapstruct.Mapper;
 

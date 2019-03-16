@@ -12,24 +12,24 @@ import java.util.Optional;
  */
 
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class MyAppException extends RuntimeException{
+public class DefaultException extends RuntimeException {
 
     private final String errorCode;
 
     private final Object[] messageArguments;
 
-    public MyAppException() {
+    public DefaultException() {
         this.errorCode = null;
         this.messageArguments = new Object[0];
     }
 
-    public MyAppException(Exception e) {
+    public DefaultException(Exception e) {
         super(e.getMessage(), e);
         this.errorCode = null;
         this.messageArguments = new Object[0];
     }
 
-    public MyAppException(String errorCode, Object... messageArguments) {
+    public DefaultException(String errorCode, Object... messageArguments) {
         this.errorCode = errorCode;
         this.messageArguments = messageArguments;
     }

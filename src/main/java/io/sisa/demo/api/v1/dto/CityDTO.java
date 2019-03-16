@@ -1,8 +1,9 @@
 package io.sisa.demo.api.v1.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
+import lombok.*;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 /**
@@ -10,17 +11,30 @@ import java.time.LocalDateTime;
  *
  * @author sisa
  */
-@Data
-public class CityDTO {
 
-	private Long id;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class CityDTO extends BaseDTO {
 
 	private int cityCode;
 
-	private String cityName;
+    @NotBlank(message = "demo.validation.NotNull.city.name")
+    private String cityName;
 
 	private String country;
 
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime validityEndDate;
+
+    @Builder
+    public CityDTO(Long id, int cityCode, String cityName, String country, LocalDateTime validityEndDate) {
+        super(id);
+        this.cityCode = cityCode;
+        this.cityName = cityName;
+        this.country = country;
+        this.validityEndDate = validityEndDate;
+    }
 }

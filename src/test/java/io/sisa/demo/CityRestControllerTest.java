@@ -1,9 +1,12 @@
 package io.sisa.demo;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.sisa.demo.api.v1.dto.CityDTO;
+import io.sisa.demo.api.v1.response.RestResponse;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,8 +29,9 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@RunWith(SpringRunner.class)
+@Category(IntegrationTest.class)
 public class CityRestControllerTest {
 
 	private MockMvc mockMvc;
@@ -52,12 +56,13 @@ public class CityRestControllerTest {
 				.andReturn();
 
 		assertThat(mvcResult.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
-		CityDTO result  = objectMapper.readValue(mvcResult.getResponse().getContentAsByteArray(), CityDTO.class);
-		assertThat(result.getCityName()).isEqualTo("Rize");
+        RestResponse<CityDTO> result = objectMapper.readValue(mvcResult.getResponse().getContentAsByteArray(), new TypeReference<RestResponse<CityDTO>>() {
+        });
+        assertThat(result.getContent().getCityName()).isEqualTo("Rize");
 
 	}
 
-
+    @Test
 	public void addCity() throws Exception {
 
 		CityDTO city = new CityDTO();
@@ -74,13 +79,12 @@ public class CityRestControllerTest {
 
 		assertThat(mvcResult.getResponse().getStatus()).isEqualTo(HttpStatus.CREATED.value());
 
-		CityDTO result  = objectMapper.readValue(mvcResult.getResponse().getContentAsByteArray(), CityDTO.class);
-		assertThat(result.getId()).isNotNull();
-		assertThat(result.getCityName()).isNotEmpty();
+        Long result = objectMapper.readValue(mvcResult.getResponse().getContentAsByteArray(), Long.class);
+        assertThat(result).isNotNull();
 
 	}
 
-
+    @Test
 	public void deleteCityById() throws Exception {
 
 		MvcResult mvcResult =  mockMvc.perform(
@@ -92,7 +96,7 @@ public class CityRestControllerTest {
 
 	}
 
-
+    @Test
 	public void mockTest() {
 
 		RestTemplate restTemplate = new RestTemplate();

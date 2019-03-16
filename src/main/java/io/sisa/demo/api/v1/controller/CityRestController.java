@@ -1,16 +1,19 @@
 package io.sisa.demo.api.v1.controller;
 
-import io.sisa.demo.api.v1.CityHelperService;
 import io.sisa.demo.api.v1.dto.CityDTO;
-import io.sisa.demo.api.v1.dto.CityMapper;
+import io.sisa.demo.api.v1.mapper.CityMapper;
+import io.sisa.demo.api.v1.response.RestResponse;
 import io.sisa.demo.core.model.domain.City;
 import io.sisa.demo.core.model.service.CityService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.sleuth.annotation.NewSpan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -19,27 +22,23 @@ import org.springframework.web.bind.annotation.*;
  * @author sisa
  */
 @Slf4j
+@Validated
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/v1/cities")
-@Api(value="CityRestController", description="Operations pertaining to cities in Demos")
+@Api(value = "City Rest Controller", description = "Operations pertaining to cities in Demos")
 public class CityRestController {
 
 	private  final CityService cityService;
-	private final CityHelperService cityHelperService;
+
 	private final CityMapper cityMapper;
 
 	@NewSpan
-	@RequestMapping(value = "/" , method = RequestMethod.POST)
-	public ResponseEntity<Long> addCity(@RequestBody CityDTO cityDTO){
+    @PostMapping(value = "/")
+    @ApiOperation(value = "add city", notes = "add city", response = Long.class)
+    public ResponseEntity<Long> addCity(@ApiParam @Validated @RequestBody CityDTO cityDTO) {
 
 		log.info("addCity");
-
-		/*City cityEntity = new City();
-		cityEntity.setCityName(city.getCityName());
-		cityEntity.setCityCode(city.getCityCode());
-		cityEntity.setCountry(city.getCountry());
-		cityEntity.setValidityDateTime(city.getValidityEndDate());*/
 
 		final City city = cityMapper.toEntity(cityDTO);
 
@@ -50,24 +49,23 @@ public class CityRestController {
 	}
 
 	@NewSpan
-	@RequestMapping(value = "{id}" , method = RequestMethod.GET)
-	public ResponseEntity<CityDTO> getCityById(@PathVariable("id") Long id){
+    @GetMapping(value = "{id}")
+    @ApiOperation(value = "find city by id", notes = "get find by id", response = RestResponse.class)
+    public ResponseEntity<RestResponse<CityDTO>> findById(@PathVariable("id") Long id) {
 
-		log.info("getCityById-id:"+id);
+        final City city = cityService.findById(id);
 
-		City city=cityService.findById(id);
+        final CityDTO cityDTO = cityMapper.toDTO(city);
 
-		CityDTO cityDTO =  cityHelperService.mapping(city);
-
-		return new ResponseEntity<>(cityDTO,HttpStatus.OK);
+        return new ResponseEntity<>(RestResponse.of(cityDTO), HttpStatus.OK);
 
 	}
 
 	@NewSpan
-	@RequestMapping(value = "{id}" , method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteCityById(@PathVariable("id") Long id){
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
 
-		City city = cityService.findById(id);
+        final City city = cityService.findById(id);
 
 		cityService.delete(city);
 

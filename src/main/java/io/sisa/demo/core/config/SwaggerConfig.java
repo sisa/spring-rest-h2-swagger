@@ -11,8 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collections;
 
-import static springfox.documentation.builders.PathSelectors.regex;
-
 /**
  * Created on Mart, 2018
  *
@@ -26,7 +24,7 @@ public class SwaggerConfig {
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select().apis(RequestHandlerSelectors.basePackage("io.sisa.demo.api.v1.controller"))
-				.paths(regex("/v1/city.*"))
+				//.paths(regex("city.*"))
 				.build()
 				.apiInfo(metaData());
 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created on Mart, 2018
@@ -33,12 +32,9 @@ public class CityServiceImpl implements CityService{
 	@Override
 	public City findById(Long id){
 
-		Optional<City> city = cityRepository.findById(id);
+		return cityRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("general.NotFound.resource", "id", id));
 
-		if (!city.isPresent())
-			throw new ResourceNotFoundException("general.NotFound.resource", "id", id);
-
-		return city.get();
 	}
 
 	@Transactional
