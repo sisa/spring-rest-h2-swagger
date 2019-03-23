@@ -1,7 +1,10 @@
 package io.sisa.demo.api.v1.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -14,7 +17,6 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class CityDTO extends BaseDTO {
@@ -29,7 +31,6 @@ public class CityDTO extends BaseDTO {
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime validityEndDate;
 
-    @Builder
     public CityDTO(Long id, int cityCode, String cityName, String country, LocalDateTime validityEndDate) {
         super(id);
         this.cityCode = cityCode;

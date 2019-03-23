@@ -38,8 +38,6 @@ public class CityRestController {
     @ApiOperation(value = "add city", notes = "add city", response = Long.class)
     public ResponseEntity<Long> addCity(@ApiParam @Validated @RequestBody CityDTO cityDTO) {
 
-		log.info("addCity");
-
 		final City city = cityMapper.toEntity(cityDTO);
 
 		cityService.save(city);
@@ -57,6 +55,7 @@ public class CityRestController {
 
         final CityDTO cityDTO = cityMapper.toDTO(city);
 
+
         return new ResponseEntity<>(RestResponse.of(cityDTO), HttpStatus.OK);
 
 	}
@@ -65,7 +64,7 @@ public class CityRestController {
     @DeleteMapping(value = "{id}")
     public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
 
-        final City city = cityService.findById(id);
+        final var city = cityService.findById(id);
 
 		cityService.delete(city);
 

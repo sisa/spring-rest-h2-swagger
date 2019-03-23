@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class CityServiceImpl implements CityService{
+class CityServiceImpl implements CityService {
 
 	private final CityRepository cityRepository;
 

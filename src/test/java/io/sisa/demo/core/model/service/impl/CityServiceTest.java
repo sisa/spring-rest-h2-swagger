@@ -1,8 +1,7 @@
-package io.sisa.demo;
+package io.sisa.demo.core.model.service.impl;
 
 import io.sisa.demo.core.model.domain.City;
 import io.sisa.demo.core.model.repository.CityRepository;
-import io.sisa.demo.core.model.service.impl.CityServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
