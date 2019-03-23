@@ -9,6 +9,15 @@ notifications:
     email:
         - isaozturk@gmail.com
 
+addons:
+  sonarcloud:
+    organization: "sisa-github" # the key of the org you chose at step #3
+    token:
+      secure: 0654fd84f08ed5042b0acf5a9d2ccdd065501de2 # encrypted value of your token
+script:
+# the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+
 # public repo on Travis CI
 after_success:
 - mvn clean test jacoco:report coveralls:report
