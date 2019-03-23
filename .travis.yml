@@ -2,7 +2,7 @@ env:
   global:
     - CC_TEST_REPORTER_ID=d3a5392c036ac2c220667879ea20dfdea4999fb9c1c3fe7d9b1d39a4158f4043
 language: java
-jdk: oraclejdk11
+jdk: openjdk11
 sudo: false
 
 notifications:
