@@ -8,11 +8,6 @@ sudo: false
 notifications:
     email:
         - isaozturk@gmail.com
-install:
-  - pip install --user codecov
-
-script:
-  - mvn cobertura:cobertura
 
 # public repo on Travis CI
 after_success:
