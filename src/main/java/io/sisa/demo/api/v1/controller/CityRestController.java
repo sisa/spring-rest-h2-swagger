@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created on Mart, 2018
  *
@@ -47,7 +49,7 @@ public class CityRestController {
 	}
 
 	@NewSpan
-    @GetMapping(value = "{id}")
+	@GetMapping(value = "/{id}")
     @ApiOperation(value = "find city by id", notes = "get find by id", response = RestResponse.class)
     public ResponseEntity<RestResponse<CityDTO>> findById(@PathVariable("id") Long id) {
 
@@ -60,8 +62,20 @@ public class CityRestController {
 
 	}
 
+
 	@NewSpan
-    @DeleteMapping(value = "{id}")
+	@GetMapping
+	public ResponseEntity<RestResponse<List<CityDTO>>> findAll() {
+
+		final List<City> cities = cityService.fetchAllCities();
+		final List<CityDTO> cityDTOS = cityMapper.toDTO(cities);
+
+		return new ResponseEntity<>(RestResponse.of(cityDTOS), HttpStatus.OK);
+
+	}
+
+	@NewSpan
+	@DeleteMapping(value = "/{id}")
     public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
 
         final var city = cityService.findById(id);

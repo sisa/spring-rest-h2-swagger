@@ -32,7 +32,7 @@ public class CityServiceTest {
     }
 
     @Test
-    public void findByIdTest(){
+    public void findByIdTest() {
 
         City city = new City();
         city.setCityCode(53);
@@ -41,6 +41,6 @@ public class CityServiceTest {
 
         given(cityRepository.findById(anyLong())).willReturn(optionalCity);
 
-       assertThat(cityService.findById(1L).getCityCode()).isEqualTo(53);
+        assertThat(cityService.findById(1L).getCityCode()).isEqualTo(53);
     }
 }

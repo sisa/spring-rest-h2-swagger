@@ -62,6 +62,20 @@ public class CityRestControllerTest {
 
 	}
 
+	@Test
+	public void getCityByIdWithNoFoundException() throws Exception {
+
+		MvcResult mvcResult = mockMvc.perform(
+				get("/v1/cities/100"))
+				.andDo(print())
+				.andReturn();
+
+		assertThat(mvcResult.getResponse().getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
+		System.out.println("sisa:" + mvcResult.getResponse().getContentAsString());
+
+
+	}
+
     @Test
 	public void addCity() throws Exception {
 

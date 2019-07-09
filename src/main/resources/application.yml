@@ -12,6 +12,7 @@ spring:
           driverClassName: org.h2.Driver
 
 server:
+  port: 5300
   servlet:
     context-path: /
   error:
@@ -26,5 +27,6 @@ logging:
 #     hosts: ["localhost:9200"]
 
 spring.jackson.serialization.write_dates_as_timestamps: false
+
 
 

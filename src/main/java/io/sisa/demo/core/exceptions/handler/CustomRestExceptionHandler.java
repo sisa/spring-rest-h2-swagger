@@ -1,4 +1,4 @@
-package io.sisa.demo.core.handler;
+package io.sisa.demo.core.exceptions.handler;
 
 import io.sisa.demo.api.v1.dto.UIMessage;
 import io.sisa.demo.api.v1.response.RestResponse;
